@@ -2,19 +2,19 @@
     <div>
         <div class="row">
 
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <select class="form-control" v-model="form.layout">
                     <option value="" disabled selected>Select layout</option>
                     <option v-for="(value, key) in layouts" :value="key">{{value}} layout</option>
                 </select>
-            </div>
-            <div class="col-md-10 text-right">
-                <button class="btn btn-default" @click="preview">
+            </div> -->
+            <div class="col-md-12 text-right">
+                <button class="btn btn-outline-info" @click="preview">
                     <font-awesome-icon icon="image"/>
                     Preview
                 </button>
 
-                <button class="btn btn-default" @click="addSection">Add Section</button>
+                <button class="btn btn-outline-info" @click="addSection">Add Section</button>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                                     <span class="pr-2 clickable" @click="addRow(index)"><font-awesome-icon icon="plus"/> Add Row</span>
                                     <span class="pr-2 clickable" @click="delSection(index)"><font-awesome-icon icon="times"/> Remove Section</span>
                                     <span class="pr-2 clickable" @click="configSection(index)"><font-awesome-icon icon="cog"/> Section Config</span>
-                                    <span class="clickable collapsed" data-toggle="collapse" :data-target="'#' + section.name + '_body'">
+                                    <span class="clickable collapsed" data-toggle="collapse" :data-target="'#' + section.name + '_body'" aria-expanded="true">
                                         <i class="fa fa-fw fa-chevron-up"></i>
                                         <i class="fa fa-fw fa-chevron-down"></i>
                                     </span>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div :id="section.name + '_body'" class="collapse">
+                    <div :id="section.name + '_body'" class="collapse show">
                         <div class="card-body sectionBody">
                             <row-component :section="section"></row-component>
                         </div>
@@ -173,6 +173,7 @@
         },
         updated() {
             this.form._uniqueId = Math.random();
+            this.form.layout = 'collapse';
         }
     }
 </script>

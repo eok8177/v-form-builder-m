@@ -12,7 +12,7 @@
 
                     <!-- Modal body -->
                     <div class="modal-body" v-if="section !== null">
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label>Section Client Key</label>
                             <input type="text" class="form-control" v-model="section.clientKey">
                         </div>
@@ -51,8 +51,8 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" @click="save">Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-info" @click="save">Save</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                     </div>
 
                 </div>

@@ -13,15 +13,9 @@
         </div>
         <div class="settingSidebar card" v-if="isConfig">
             <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <h4>{{controlInfo.label}}</h4>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <button class="btn btn-default" @click="applyEditSidebar">Apply</button>
-                        <button class="btn btn-default" @click="closeEditSidebar">Close</button>
-                    </div>
-                </div>
+
+                <h4 class="pb-1 border-bottom">{{controlInfo.label}}</h4>
+
 
                 <base-config-component :control="controlInfo"></base-config-component>
 
@@ -31,6 +25,11 @@
                 </component>
 
                 <base-style-component :control="controlInfo"></base-style-component>
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-info" @click="applyEditSidebar">Apply</button>
+                    <button class="btn btn-outline-secondary" @click="closeEditSidebar">Close</button>
+                </div
             </div>
         </div>
     </div>

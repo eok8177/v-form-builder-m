@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <div class="form-group">
                     <label>ID</label>
                     <input type="text" readonly class="form-control" :value="control.name">
@@ -12,7 +12,7 @@
                     <label>Control type</label>
                     <input type="text" readonly class="form-control" :value="typeFirstUpper">
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Name</label>
