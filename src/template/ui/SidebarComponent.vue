@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sticky">
         <div class="controlSidebar list-group" v-show="!isConfig">
             <a href="#" class="list-group-item active">
                 Supported Controls

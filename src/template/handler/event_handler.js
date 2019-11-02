@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 var EventHandlerConstant = {
     REMOVE_CONTROL: 'remove_control',
+    REMOVE_CONTROL_ITEM: 'remove_control_item',
 
     // sidebar
     ACTIVATE_EDITOR_SIDEBAR: 'activate_editor_sidebar',

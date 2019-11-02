@@ -9,6 +9,7 @@
                    :key="control.name"
                    :control="control"
                    @dblclick.native="openConfig(control)"
+                   @removeItem="removeItem"
                    :ref="control.name"
                    :label-position="labelPosition">
         </component>
@@ -87,6 +88,9 @@
             removeRow(rowName) {
                 this.$emit('removeRow', rowName);
             },
+            removeItem(name) {
+                eventBus.$emit(EventHandlerConstant.REMOVE_CONTROL_ITEM, name);
+            },
 
             // control
             openConfig(controlInfo) {
@@ -155,6 +159,29 @@
                 this.$nextTick(() => {
                     ControlHandler.setSelect(oldControl.name);
                 });
+            });
+
+            // remove control form item component
+            eventBus.$on(EventHandlerConstant.REMOVE_CONTROL_ITEM, name => {
+
+                var controlIndex = _.findIndex(this.row.controls, {name: name});
+
+                if (controlIndex < 0) {
+                    return;
+                }
+
+                // before hook
+                var controlInfo = this.row.controls[controlIndex];
+                let beforeRun = Hooks.Control.beforeRemove.runSequence(controlInfo);
+                if (beforeRun === false) {
+                    return;
+                }
+
+                // remove control
+                this.row.controls.splice(controlIndex, 1);
+
+                // after hook
+                Hooks.Control.afterRemove.run(controlInfo);
             });
         },
         mounted() {

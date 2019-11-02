@@ -34,3 +34,14 @@ label.underline {
 .clickable {
     cursor: pointer;
 }
+.controlItemWrapper .tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px;
+    z-index: 1;
+}
+.sticky {
+    position: sticky;
+    top: 60px;
+}
