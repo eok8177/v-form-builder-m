@@ -47,6 +47,62 @@
                 <label>
                     <input type="checkbox" name="isCalculated" v-model="control.isCalculated"> Is Calculated
                 </label>
+                <div class="col-md-12" v-if="control.isCalculated">
+                    <div class="row">
+                        <select class="col-3 form-control form-control-sm" v-model="condition.action_type">
+                          <option value="show">Show</option>
+                          <option value="hide">Hide</option>
+                        </select>
+                        <label class="col-2"> if: </label>
+                        <select class="col-2 form-control form-control-sm" v-model="condition.logic_type">
+                          <option value="all">All</option>
+                          <option value="any">Any</option>
+                        </select>
+                        <label class="col-5"> the match:</label>
+                    </div>
+
+                    <div class="row mt-2" v-for="(rule, index) in condition.rules">
+                        <select class="form-control form-control-sm col-4" 
+                            v-model="condition.rules[index].fieldId" 
+                            @change="applyRule()">
+                          <option :value="field.id" v-for="field in formData">{{field.label}}</option>
+                        </select>
+
+                        <select class="form-control form-control-sm col-2" 
+                            v-model="condition.rules[index].operator" 
+                            @change="applyRule()">
+                          <option value="is">is</option>
+                          <option value="is_not">is not</option>
+                          <option value="greater">greater then</option>
+                          <option value="less">less then</option>
+                          <option value="contain">contains</option>
+                          <option value="start">starts with</option>
+                          <option value="end">ends with</option>
+                        </select>
+
+                        <div class="col-4 px-0">
+                            <input class="form-control form-control-sm" type="text" placeholder="value..." 
+                                v-model="condition.rules[index].value" 
+                                @change="applyRule()" 
+                                v-if="condition.rules[index].fieldId && formData[condition.rules[index].fieldId].type != 'select'">
+
+                            <select class="form-control form-control-sm" 
+                                v-model="condition.rules[index].value" 
+                                @change="applyRule()" 
+                                v-if="condition.rules[index].fieldId && formData[condition.rules[index].fieldId].type == 'select'">
+                              <option :value="field.id" v-for="field in formData[condition.rules[index].fieldId].dataOptions">{{field.text}}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-2 px-2 d-flex">
+                            <span class="ml-2" @click="addRule()"><font-awesome-icon icon="plus"/></span>
+                            <span class="ml-2" @click="delRule(index)" v-if="condition.rules.length > 1"><font-awesome-icon icon="times"/></span>
+                        </div>
+
+                    </div>
+
+                    <hr>
+                </div>
             </div>
         </div>
     </div>
@@ -54,9 +110,11 @@
 
 <script>
     import {FORM_CONSTANTS} from "sethFormBuilder/config/constants";
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
     export default {
         name: "BaseConfigComponent",
+        components: {FontAwesomeIcon},
         props: {
             control: {
                 type: Object
@@ -64,9 +122,45 @@
         },
         data: () => ({
             widthOptions: FORM_CONSTANTS.WidthOptions,
+            condition: {
+                action_type: false,
+                logic_type: false,
+                rules: [
+                    {
+                        fieldId: false,
+                        operator: false,
+                        value: ''
+                    }
+                ]
+            },
+            formData: []
         }),
         mounted() {
             $('[data-toggle="tooltip"]').tooltip(); // trigger tooltip
+            this.parseForm(); // get all fields from form
+            if (this.control.condition) this.condition = this.control.condition; // get from DB
+        },
+        watch: { 
+            control: function(newVal, oldVal) { // watch if control changed fully
+                if (oldVal.name != newVal.name) {
+                    if (this.control.condition) {
+                        this.condition = this.control.condition;
+                    } else {
+                        this.condition = {
+                            action_type: false,
+                            logic_type: false,
+                            rules: [
+                                {
+                                    fieldId: false,
+                                    operator: false,
+                                    value: ''
+                                }
+                            ]
+                        };
+                    }
+                }
+
+            }
         },
         computed: {
             typeFirstUpper() {
@@ -76,6 +170,54 @@
         methods: {
             applySidebar: function() {
                 this.$parent.applyEditSidebar();
+            },
+            addRule() {
+                this.condition.rules.push(
+                    {
+                        fieldId: false,
+                        operator: false,
+                        value: ''
+                    }
+                );
+            },
+            delRule(index) {
+                this.condition.rules.splice(index, 1);
+                this.control.condition = this.condition;
+            },
+            applyRule() {
+                this.control.condition = this.condition;
+            },
+            parseForm() {
+                // parse form object
+                let formData = {};
+                _.forEach(this.$parent.$parent.form.sections, function(value) {
+                    if (value.isDynamic) { // parse sections
+                        _.forEach(value.instances, function(value) {
+                            _.forEach(value, function(value) {
+                                _.forEach(value.controls, function(value) {
+                                    formData[value.name] = {
+                                        id: value.name,
+                                        label: value.label,
+                                        type: value.type
+                                    };
+                                    if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                });
+                            });
+                        });
+                    } else {
+                        _.forEach(value.rows, function(value) {
+                            _.forEach(value.controls, function(value) {
+                                formData[value.name] = {
+                                    id: value.name,
+                                    label: value.label,
+                                    type: value.type
+                                };
+                                if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                            });
+                        });
+                    }
+                });
+                this.formData = formData;
             }
         }
     }

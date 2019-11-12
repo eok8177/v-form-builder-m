@@ -1,9 +1,9 @@
 <template>
     <div class="row" style="margin: 0 20px;">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <section-component :form="form" ref="SectionComponent"></section-component>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <sidebar-component></sidebar-component>
         </div>
 
