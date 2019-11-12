@@ -46,12 +46,6 @@
             </div>
         </div>
         
-        <div class="col-md-12">
-            <label>
-                <input type="checkbox" name="isCalculated" v-model="control.isCalculated"> Is Calculated
-            </label>
-        </div>
-
         <select-ajax-modal ref="SelectAjaxModal"></select-ajax-modal>
     </div>
 </template>
