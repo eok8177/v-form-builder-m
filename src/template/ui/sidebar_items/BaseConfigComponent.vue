@@ -158,6 +158,7 @@
                             ]
                         };
                     }
+                    this.parseForm();
                 }
 
             }
@@ -190,29 +191,34 @@
             parseForm() {
                 // parse form object
                 let formData = {};
+                let currentName = this.control.name;
                 _.forEach(this.$parent.$parent.form.sections, function(value) {
                     if (value.isDynamic) { // parse sections
                         _.forEach(value.instances, function(value) {
                             _.forEach(value, function(value) {
                                 _.forEach(value.controls, function(value) {
-                                    formData[value.name] = {
-                                        id: value.name,
-                                        label: value.label,
-                                        type: value.type
-                                    };
-                                    if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                    if (currentName != value.name) {
+                                        formData[value.name] = {
+                                            id: value.name,
+                                            label: value.label,
+                                            type: value.type
+                                        };
+                                        if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                    }
                                 });
                             });
                         });
                     } else {
                         _.forEach(value.rows, function(value) {
                             _.forEach(value.controls, function(value) {
-                                formData[value.name] = {
-                                    id: value.name,
-                                    label: value.label,
-                                    type: value.type
-                                };
-                                if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                if (currentName != value.name) {
+                                    formData[value.name] = {
+                                        id: value.name,
+                                        label: value.label,
+                                        type: value.type
+                                    };
+                                    if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                }
                             });
                         });
                     }
