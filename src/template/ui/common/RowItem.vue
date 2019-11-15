@@ -98,6 +98,40 @@
                 ControlHandler.setSelect(controlInfo.name);
                 this.editing_control = controlInfo;
                 eventBus.$emit(EventHandlerConstant.ACTIVATE_EDITOR_SIDEBAR, _.cloneDeep(controlInfo));
+            },
+
+            // remove Depends this field from others
+            removeDepends(name) {
+                let self = this;
+
+                _.forEach(this.$parent.$parent.form.sections, function(value, indexSection) {
+                    _.forEach(value.rows, function(value, indexRow) {
+                        _.forEach(value.controls, function(value, indexControl) {
+                            if (value.hasOwnProperty('condition')) {
+                                if (value.condition.hasOwnProperty('rules')) {
+                                    // rebuild rules
+                                    let rules = [];
+                                    _.forEach(value.condition.rules, function(value, index) {
+                                        if (value.fieldId != name) {
+                                            rules.push(value);
+                                        }
+                                    });
+
+                                    if (rules.length == 0) { // set empty rules object
+                                        rules.push(
+                                            {
+                                                fieldId: false,
+                                                operator: false,
+                                                value: ''
+                                            }
+                                        );
+                                    }
+                                    self.$parent.$parent.form.sections[indexSection].rows[indexRow].controls[indexControl].condition.rules = rules;
+                                }
+                            }
+                        });
+                    });
+                });
             }
         },
         created() {
@@ -115,6 +149,8 @@
 
                 // before hook
                 var controlInfo = this.row.controls[controlIndex];
+                this.removeDepends(controlInfo.name);
+
                 let beforeRun = Hooks.Control.beforeRemove.runSequence(controlInfo);
                 if (beforeRun === false) {
                     return;
@@ -179,6 +215,8 @@
 
                 // remove control
                 this.row.controls.splice(controlIndex, 1);
+
+                this.removeDepends(name);
 
                 // after hook
                 Hooks.Control.afterRemove.run(controlInfo);

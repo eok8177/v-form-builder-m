@@ -81,6 +81,8 @@ FORM_CONSTANTS.Control = {
     // attr for checkbox
     isChecked: false,
 
+    hidden: false, // hidden field
+
     isCalculated: false // is isCalculated data or not
 };
 
