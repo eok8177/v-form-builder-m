@@ -49,9 +49,9 @@
         <div class="row">
             <div class="col-md-12">
                 <label>
-                    <input type="checkbox" name="isCalculated" v-model="control.isCalculated"> Is Calculated
+                    <input type="checkbox" name="isConditional" v-model="control.isConditional"> Is Conditional
                 </label>
-                <div class="col-md-12" v-if="control.isCalculated">
+                <div class="col-md-12" v-if="control.isConditional">
                     <div class="row">
                         <select class="col-3 form-control form-control-sm" v-model="condition.action_type">
                           <option value="show">Show</option>
@@ -69,7 +69,9 @@
                         <select class="form-control form-control-sm col-4" 
                             v-model="condition.rules[index].fieldId" 
                             @change="applyRule()">
-                          <option :value="field.id" v-for="field in formData">{{field.label}}</option>
+                          <optgroup :label="group.label" v-for="group in fieldsForSelect">
+                            <option :value="field.id" v-for="field in group.options">{{field.label}}</option>
+                          </optgroup>
                         </select>
 
                         <select class="form-control form-control-sm col-2" 
@@ -127,17 +129,19 @@
         data: () => ({
             widthOptions: FORM_CONSTANTS.WidthOptions,
             condition: {
-                action_type: false,
-                logic_type: false,
+                action_type: 'show',
+                logic_type: 'all',
                 rules: [
                     {
                         fieldId: false,
-                        operator: false,
+                        operator: 'is',
                         value: ''
                     }
                 ]
             },
-            formData: []
+            formData: {},
+            fieldsForSelect: {},
+            firstField: false
         }),
         mounted() {
             $('[data-toggle="tooltip"]').tooltip(); // trigger tooltip
@@ -151,12 +155,12 @@
                         this.condition = this.control.condition;
                     } else {
                         this.condition = {
-                            action_type: false,
-                            logic_type: false,
+                            action_type: 'show',
+                            logic_type: 'all',
                             rules: [
                                 {
-                                    fieldId: false,
-                                    operator: false,
+                                    fieldId: this.firstField,
+                                    operator: 'is',
                                     value: ''
                                 }
                             ]
@@ -179,8 +183,8 @@
             addRule() {
                 this.condition.rules.push(
                     {
-                        fieldId: false,
-                        operator: false,
+                        fieldId: this.firstField,
+                        operator: 'is',
                         value: ''
                     }
                 );
@@ -194,23 +198,30 @@
             },
             parseForm() {
                 // parse form object
-                let formData = {};
-                let currentName = this.control.name;
+                let self = this;
                 _.forEach(this.$parent.$parent.form.sections, function(value) {
+                    let controls = {};
                     _.forEach(value.rows, function(value) {
                         _.forEach(value.controls, function(value) {
-                            if (currentName != value.name) {
-                                formData[value.name] = {
+                            if (self.control.name != value.name) {
+                                controls[value.name] = {
                                     id: value.name,
                                     label: value.label,
                                     type: value.type
                                 };
-                                if (value.type == "select") formData[value.name].dataOptions = value.dataOptions;
+                                if (value.type == "select") controls[value.name].dataOptions = value.dataOptions;
                             }
                         });
                     });
+                    self.formData = Object.assign(self.formData, controls);
+                    self.fieldsForSelect = Object.assign(self.fieldsForSelect, {
+                        [value.name]: {
+                            label: value.label,
+                            options: controls
+                        }
+                    });
                 });
-                this.formData = formData;
+                this.firstField = this.formData[Object.keys(this.formData)[0]].id;
             }
         }
     }
