@@ -111,6 +111,37 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" v-if="control.type == 'text' || control.type == 'number'">
+            <div class="col-sm-12">
+                <label>
+                    <input type="checkbox" name="isCalculated" v-model="control.isCalculated"> Is Calculated
+                </label>
+                <div v-if="control.isCalculated">
+                    <div class="d-flex justify-content-between">
+                        <select class="form-control form-control-sm mr-4" 
+                            @change="addCalcField($event)">
+                          <optgroup :label="group.label" v-for="group in fieldsForSelect">
+                            <option :value="field.id" v-for="field in group.options">{{field.label}}</option>
+                          </optgroup>
+                        </select>
+
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button @click="addOperator(' + ')" class="btn btn-sm btn-outline-secondary">+</button>
+                            <button @click="addOperator(' - ')" class="btn btn-sm btn-outline-secondary">-</button>
+                            <button @click="addOperator(' / ')" class="btn btn-sm btn-outline-secondary">/</button>
+                            <button @click="addOperator(' * ')" class="btn btn-sm btn-outline-secondary">*</button>
+                            <button @click="addOperator(' (')" class="btn btn-sm btn-outline-secondary">(</button>
+                            <button @click="addOperator(') ')" class="btn btn-sm btn-outline-secondary">)</button>
+                            <button @click="addOperator('.')" class="btn btn-sm btn-outline-secondary">.</button>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                      <textarea class="form-control" :class="{'is-invalid': formulaError}" ref="formula" rows="2" v-model="formula"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -141,12 +172,15 @@
             },
             formData: {},
             fieldsForSelect: {},
-            firstField: false
+            firstField: false,
+            formula: '',
+            formulaError: false
         }),
         mounted() {
             $('[data-toggle="tooltip"]').tooltip(); // trigger tooltip
             this.parseForm(); // get all fields from form
             if (this.control.condition) this.condition = this.control.condition; // get from DB
+            if (this.control.formula) this.formula = this.control.formula; // get from DB
         },
         watch: { 
             control: function(newVal, oldVal) { // watch if control changed fully
@@ -167,8 +201,27 @@
                         };
                     }
                     this.parseForm();
+                    if (this.control.formula) {
+                        this.formula = this.control.formula;
+                    }
                 }
 
+            },
+            formula: function(newVal) {
+                //simple test
+                //TODO Validate fields exist if need
+                let test = newVal.replace(/\s*\{.*?\}\s*/g, '1');
+                this.formulaError = false;
+                try {
+                    eval(test); 
+                } catch (e) {
+                    if (e instanceof SyntaxError) {
+                        this.formulaError = true;
+                    }
+                }
+                if (!this.formulaError) {
+                    this.control.formula = newVal;
+                }
             }
         },
         computed: {
@@ -222,7 +275,17 @@
                     });
                 });
                 this.firstField = this.formData[Object.keys(this.formData)[0]].id;
-            }
+            },
+
+            // Calculation
+            addCalcField(event) {
+                this.formula = this.formula + '{'+this.formData[event.target.value].label+':'+event.target.value+'} ';
+                this.$refs.formula.focus();
+            },
+            addOperator(operator) {
+                this.formula = this.formula + operator;
+                this.$refs.formula.focus();
+            },
         }
     }
 </script>
