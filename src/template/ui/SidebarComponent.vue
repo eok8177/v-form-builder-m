@@ -101,6 +101,14 @@
                 // after hook here
                 Hooks.Sidebar.afterOpenConfig.run(this.controlInfo);
             });
+
+            //close Sidebar config on delete control item
+            eventBus.$on(EventHandlerConstant.REMOVE_CONTROL, name => {
+                this.closeEditSidebar();
+            });
+            eventBus.$on(EventHandlerConstant.REMOVE_CONTROL_ITEM, name => {
+                this.closeEditSidebar();
+            });
         },
         mounted() {
             // insert controls
