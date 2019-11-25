@@ -26,6 +26,7 @@
 
                 <base-style-component :control="controlInfo"></base-style-component>
 
+                <div class="d-flex mb-2" :class="message.type" v-if="message.show">{{message.text}}</div>
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-outline-info" @click="applyEditSidebar">Apply</button>
                     <button class="btn btn-outline-secondary" @click="closeEditSidebar">Close</button>
@@ -52,6 +53,11 @@
             isConfig: false,
             controlInfo: null,
             configComponent: null,
+            message: {
+                show: false,
+                text: '',
+                type: ''
+            },
         }),
         methods: {
             closeEditSidebar() {
@@ -60,6 +66,7 @@
                 ControlHandler.clearSelect();
             },
             applyEditSidebar() {
+                let self = this;
                 if (this.controlInfo.name !== ControlHandler.getSelectedItem()) {
                     return;
                 }
@@ -77,6 +84,15 @@
 
                 // after hook here
                 Hooks.Sidebar.afterApplyConfig.run(this.controlInfo);
+
+                // show message under button Apply
+                this.message.text = 'Settings updated successfully';
+                this.message.type = 'text-success';
+                this.message.show = true;
+                setInterval(() => {
+                        self.message.show = false;
+                        self.message.text = '';
+                }, 3000);
             }
         },
         created() {

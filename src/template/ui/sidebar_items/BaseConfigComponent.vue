@@ -120,6 +120,7 @@
                 <div v-if="control.isCalculated">
                     <div class="d-flex justify-content-between">
                         <select class="form-control form-control-sm mr-4" 
+                            v-model="formulaSelectModel"
                             @change="addCalcField($event)">
                           <optgroup :label="group.label" v-for="group in fieldsForSelect">
                             <option :value="field.id" v-for="field in group.options">{{field.label}}</option>
@@ -174,7 +175,8 @@
             fieldsForSelect: {},
             firstField: false,
             formula: '',
-            formulaError: false
+            formulaError: false,
+            formulaSelectModel: null,
         }),
         mounted() {
             $('[data-toggle="tooltip"]').tooltip(); // trigger tooltip
@@ -185,6 +187,9 @@
         watch: { 
             control: function(newVal, oldVal) { // watch if control changed fully
                 if (oldVal.name != newVal.name) {
+                    this.parseForm();
+                    this.formulaSelectModel = null;
+                    this.formula = '';
                     if (this.control.condition && this.control.condition.rules.length > 0) {
                         this.condition = this.control.condition;
                     } else {
@@ -200,7 +205,6 @@
                             ]
                         };
                     }
-                    this.parseForm();
                     if (this.control.formula) {
                         this.formula = this.control.formula;
                     }
@@ -234,13 +238,21 @@
                 this.$parent.applyEditSidebar();
             },
             addRule() {
-                this.condition.rules.push(
-                    {
-                        fieldId: this.firstField,
-                        operator: 'is',
-                        value: ''
+                let accept = true;
+                _.forEach(this.condition.rules, function(rule) {
+                    if (!rule.value) {
+                        accept = false;
                     }
-                );
+                });
+                if (accept) {
+                    this.condition.rules.push(
+                        {
+                            fieldId: this.firstField,
+                            operator: 'is',
+                            value: ''
+                        }
+                    );
+                }
             },
             delRule(index) {
                 this.condition.rules.splice(index, 1);
@@ -252,6 +264,8 @@
             parseForm() {
                 // parse form object
                 let self = this;
+                self.formData = {};
+                self.fieldsForSelect = {};
                 _.forEach(this.$parent.$parent.form.sections, function(value) {
                     let controls = {};
                     _.forEach(value.rows, function(value) {
@@ -274,7 +288,7 @@
                         }
                     });
                 });
-                this.firstField = this.formData[Object.keys(this.formData)[0]].id;
+                self.firstField = Object.keys(self.formData)[0];
             },
 
             // Calculation
