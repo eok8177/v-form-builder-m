@@ -3,9 +3,7 @@
         <div class="row checkBoxControl" v-if="labelPosition === 'left'">
             <div class="col-md-4">
                 <label :for="control.name + '_gui_control'"
-                       :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                    {{control.label}}
-                </label>
+                       :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
             </div>
             <div class="col-md-8 text-center">
                 <input type="checkbox"
@@ -16,9 +14,7 @@
         </div>
         <div class="form-group" v-else>
             <label :for="control.name + '_gui_control'"
-                   :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                {{control.label}}
-            </label>
+                   :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
 
             <div class="text-center">
                 <input type="checkbox"

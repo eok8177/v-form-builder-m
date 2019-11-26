@@ -4,9 +4,7 @@
 
         <div class="controlItem row" :id="control.name" v-if="labelPosition === 'left'">
             <div class="col-md-4">
-                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                    {{control.label}}
-                </label>
+                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
             </div>
             <div class="col-md-8 input-group">
                 <input type="text" class="form-control"
@@ -17,9 +15,7 @@
         </div>
         <div class="controlItem row" :id="control.name" v-else>
             <div class="form-group col-md-12">
-                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                    {{control.label}}
-                </label>
+                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
                 <div class="input-group">
                     <input type="text" class="form-control"
                            :readonly="control.readonly"

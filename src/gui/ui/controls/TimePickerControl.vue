@@ -2,9 +2,7 @@
     <div>
         <div class="row" v-if="labelPosition === 'left'">
             <div class="col-md-4">
-                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                    {{control.label}}
-                </label>
+                <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
             </div>
             <div class="col-md-8">
                 <div class="input-group">
@@ -19,9 +17,7 @@
             </div>
         </div>
         <div v-else class="form-group">
-            <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}">
-                {{control.label}}
-            </label>
+            <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label"></label>
             <div class="input-group">
                 <ControlTimePicker v-model="control.value" :readonly="control.readonly" :options="options" />
 

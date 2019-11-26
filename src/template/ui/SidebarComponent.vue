@@ -14,7 +14,7 @@
         <div class="settingSidebar card" v-if="isConfig">
             <div class="card-body">
 
-                <h4 class="pb-1 border-bottom">{{controlInfo.label}}</h4>
+                <h4 class="pb-1 border-bottom" v-html="controlInfo.label"></h4>
 
 
                 <base-config-component :control="controlInfo"></base-config-component>
