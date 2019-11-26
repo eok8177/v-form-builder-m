@@ -19,8 +19,8 @@
                     <th class="text-center" width="10%">
                         <font-awesome-icon icon="plus" class="clickable" @click="addOption"></font-awesome-icon>
                     </th>
-                    <th width="40%">Value</th>
                     <th>Text</th>
+                    <th width="40%">Value</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,10 +29,10 @@
                         <font-awesome-icon icon="times" class="clickable" @click="removeOption(index)"></font-awesome-icon>
                     </td>
                     <td>
-                        <input type="text" class="form-control txtId" v-model="option.id">
+                        <input type="text" class="form-control txtText" v-model="option.text">
                     </td>
                     <td>
-                        <input type="text" class="form-control txtText" v-model="option.text">
+                        <input type="text" class="form-control txtId" v-model="option.id" @change="setText(index)">
                     </td>
                 </tr>
                 </tbody>
@@ -72,6 +72,11 @@
             },
             dataAjaxModal(e) {
                 this.$refs.SelectAjaxModal.openModal();
+            },
+            setText(index) {
+                if (!this.control.dataOptions[index].text) {
+                    this.control.dataOptions[index].text = this.control.dataOptions[index].id;
+                }
             }
         },
         mounted() {
