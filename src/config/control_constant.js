@@ -14,6 +14,7 @@ import GUISelectControl from 'sethFormBuilder/gui/ui/controls/SelectControl';
 import GUITextControl from 'sethFormBuilder/gui/ui/controls/TextControl';
 import GUITimePickerControl from 'sethFormBuilder/gui/ui/controls/TimePickerControl';
 import GUIFileControl from 'sethFormBuilder/gui/ui/controls/FileControl';
+import GUIHtmlControl from 'sethFormBuilder/gui/ui/controls/HtmlControl';
 
 // TEMPLATE Control
 import TEMPLATETextControl from 'sethFormBuilder/template/ui/common/controls/TextControl';
@@ -23,6 +24,7 @@ import TEMPLATEDatePickerControl from 'sethFormBuilder/template/ui/common/contro
 import TEMPLATETimePickerControl from 'sethFormBuilder/template/ui/common/controls/TimePickerControl';
 import TEMPLATESelectControl from 'sethFormBuilder/template/ui/common/controls/SelectControl';
 import TEMPLATEFileControl from 'sethFormBuilder/template/ui/common/controls/FileControl';
+import TEMPLATEHtmlControl from 'sethFormBuilder/template/ui/common/controls/HtmlControl';
 
 // CONFIG CONTROL
 import SIDEBARDatePickerControl from 'sethFormBuilder/template/ui/sidebar_items/DatePickerConfigComponent';
@@ -32,6 +34,7 @@ import SIDEBARNumberControl from 'sethFormBuilder/template/ui/sidebar_items/Numb
 import SIDEBARTextControl from 'sethFormBuilder/template/ui/sidebar_items/TextConfigComponent';
 import SIDEBARCheckboxControl from 'sethFormBuilder/template/ui/sidebar_items/CheckboxConfigComponent';
 import SIDEBARFileControl from 'sethFormBuilder/template/ui/sidebar_items/FileConfigComponent';
+import SIDEBARHtmlControl from 'sethFormBuilder/template/ui/sidebar_items/HtmlConfigComponent';
 
 // Template Control
 // special key for control:
@@ -106,6 +109,15 @@ const CONTROL_TYPES = {
             gui: GUIFileControl,
             template: TEMPLATEFileControl,
             config: SIDEBARFileControl
+        }
+    },
+    html: {
+        label:"HTML Block",
+        icon: faEdit,
+        source: {
+            gui: GUIHtmlControl,
+            template: TEMPLATEHtmlControl,
+            config: SIDEBARHtmlControl
         }
     },
 };

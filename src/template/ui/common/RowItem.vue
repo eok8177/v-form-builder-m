@@ -48,6 +48,10 @@
                 controlInfo.label = FORM_CONSTANTS.Type[controlType].label;
                 controlInfo.fieldName = controlInfo.name; // same for both
 
+                if (controlInfo.type == 'html') { // set full width to HTML Block
+                    controlInfo.className = 'col-md-12';
+                }
+
                 // check if there's any more special fields?
                 if(CONTROL_TYPES[controlType].other_properties) {
                     _.each(CONTROL_TYPES[controlType].other_properties, (value, key) => {

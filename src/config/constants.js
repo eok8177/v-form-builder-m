@@ -82,6 +82,7 @@ FORM_CONSTANTS.Control = {
     isChecked: false,
 
     hidden: false, // hidden field
+    text: '', // HTML Block
 
     isCalculated: false // is isCalculated data or not
 };
@@ -113,6 +114,10 @@ FORM_CONSTANTS.Type = {
     },
     file: {
         label:"File Input",
+        icon: faEdit
+    },
+    html: {
+        label:"HTML Block",
         icon: faEdit
     },
 };
