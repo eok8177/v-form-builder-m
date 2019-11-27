@@ -111,6 +111,10 @@ FORM_CONSTANTS.Type = {
         label:"Checkbox",
         icon: faCheck
     },
+    file: {
+        label:"File Input",
+        icon: faEdit
+    },
 };
 
 FORM_CONSTANTS.WidthOptions = {
