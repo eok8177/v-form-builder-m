@@ -15,6 +15,7 @@ import GUITextControl from 'sethFormBuilder/gui/ui/controls/TextControl';
 import GUITimePickerControl from 'sethFormBuilder/gui/ui/controls/TimePickerControl';
 import GUIFileControl from 'sethFormBuilder/gui/ui/controls/FileControl';
 import GUIHtmlControl from 'sethFormBuilder/gui/ui/controls/HtmlControl';
+import GUIAddressControl from 'sethFormBuilder/gui/ui/controls/AddressControl';
 
 // TEMPLATE Control
 import TEMPLATETextControl from 'sethFormBuilder/template/ui/common/controls/TextControl';
@@ -25,6 +26,7 @@ import TEMPLATETimePickerControl from 'sethFormBuilder/template/ui/common/contro
 import TEMPLATESelectControl from 'sethFormBuilder/template/ui/common/controls/SelectControl';
 import TEMPLATEFileControl from 'sethFormBuilder/template/ui/common/controls/FileControl';
 import TEMPLATEHtmlControl from 'sethFormBuilder/template/ui/common/controls/HtmlControl';
+import TEMPLATEAddressControl from 'sethFormBuilder/template/ui/common/controls/AddressControl';
 
 // CONFIG CONTROL
 import SIDEBARDatePickerControl from 'sethFormBuilder/template/ui/sidebar_items/DatePickerConfigComponent';
@@ -35,6 +37,7 @@ import SIDEBARTextControl from 'sethFormBuilder/template/ui/sidebar_items/TextCo
 import SIDEBARCheckboxControl from 'sethFormBuilder/template/ui/sidebar_items/CheckboxConfigComponent';
 import SIDEBARFileControl from 'sethFormBuilder/template/ui/sidebar_items/FileConfigComponent';
 import SIDEBARHtmlControl from 'sethFormBuilder/template/ui/sidebar_items/HtmlConfigComponent';
+import SIDEBARAddressControl from 'sethFormBuilder/template/ui/sidebar_items/AddressConfigComponent';
 
 // Template Control
 // special key for control:
@@ -118,6 +121,15 @@ const CONTROL_TYPES = {
             gui: GUIHtmlControl,
             template: TEMPLATEHtmlControl,
             config: SIDEBARHtmlControl
+        }
+    },
+    address: {
+        label:"Address Block",
+        icon: faEdit,
+        source: {
+            gui: GUIAddressControl,
+            template: TEMPLATEAddressControl,
+            config: SIDEBARAddressControl
         }
     },
 };

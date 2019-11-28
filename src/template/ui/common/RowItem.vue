@@ -51,6 +51,13 @@
                 if (controlInfo.type == 'html') { // set full width to HTML Block
                     controlInfo.className = 'col-md-12';
                 }
+                if (controlInfo.type == 'address') {
+                    controlInfo.className = 'col-md-12';
+                    controlInfo.label1 = "Address line";
+                    controlInfo.label2 = "Address line2";
+                    controlInfo.label3 = "Postcode";
+                    controlInfo.label4 = "Country";
+                }
 
                 // check if there's any more special fields?
                 if(CONTROL_TYPES[controlType].other_properties) {

@@ -120,6 +120,10 @@ FORM_CONSTANTS.Type = {
         label:"HTML Block",
         icon: faEdit
     },
+    address: {
+        label:"Address Block",
+        icon: faEdit
+    },
 };
 
 FORM_CONSTANTS.WidthOptions = {
