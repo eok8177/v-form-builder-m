@@ -1,13 +1,13 @@
 <template>
     <div>
 
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" :id="control.name + '_map'" v-model="control.showMap">
               <label class="custom-control-label" :for="control.name + '_map'">{{control.labelMap}}</label>
             </div>
             <input type="text" class="form-control form-control-sm" v-model="control.labelMap">
-        </div>
+        </div> -->
 
         <div class="d-flex justify-content-between">
             <div class="custom-control custom-switch">

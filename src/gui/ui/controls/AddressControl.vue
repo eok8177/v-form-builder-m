@@ -2,14 +2,14 @@
     <div>
         <!-- <div class="row" v-if="labelPosition === 'left'">
         </div> -->
-        <div class="form-group" v-if="control.showMap">
+        <!-- <div class="form-group" v-if="control.showMap">
             <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.labelMap"></label>
 
             <input type="text"
                    class="form-control"
                    :name="control.fieldName + 'Map'"
                    v-model="control.valueMap" />
-        </div>
+        </div> -->
         <div class="form-group" v-if="control.show1">
             <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label1"></label>
 

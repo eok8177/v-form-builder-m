@@ -53,18 +53,18 @@
                 }
                 if (controlInfo.type == 'address') {
                     controlInfo.className = 'col-md-12';
-                    controlInfo.labelMap = "Google Map";
-                    controlInfo.showMap = false;
-                    controlInfo.label1 = "Address line";
+                    // controlInfo.labelMap = "Google Map";
+                    // controlInfo.showMap = false;
+                    controlInfo.label1 = "Street Address";
                     controlInfo.show1 = true;
-                    controlInfo.label2 = "Address line2";
+                    controlInfo.label2 = "Address line 2";
                     controlInfo.show2 = false;
                     controlInfo.label3 = "City";
-                    controlInfo.show3 = false;
+                    controlInfo.show3 = true;
                     controlInfo.label4 = "Postcode";
-                    controlInfo.show4 = false;
+                    controlInfo.show4 = true;
                     controlInfo.label5 = "Country";
-                    controlInfo.show5 = true;
+                    controlInfo.show5 = false;
                 }
 
                 // check if there's any more special fields?

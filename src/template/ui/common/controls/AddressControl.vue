@@ -6,7 +6,7 @@
         <!-- </div> -->
         <div class="controlItem px-3" :id="control.name">
 
-            <div class="form-group d-flex" v-if="control.showMap">
+            <!-- <div class="form-group d-flex" v-if="control.showMap">
                 <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.labelMap" class="w-50"></label>
                 <div class="input-group">
                     <input type="text" class="form-control"
@@ -14,7 +14,7 @@
                            :name="control.fieldName + '1'"
                            >
                 </div>
-            </div>
+            </div> -->
 
             <div class="form-group d-flex" v-if="control.show1">
                 <label :class="{'bold': control.labelBold, 'italic': control.labelItalic, 'underline': control.labelUnderline}" v-html="control.label1" class="w-50"></label>
