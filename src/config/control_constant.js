@@ -16,6 +16,7 @@ import GUITimePickerControl from 'sethFormBuilder/gui/ui/controls/TimePickerCont
 import GUIFileControl from 'sethFormBuilder/gui/ui/controls/FileControl';
 import GUIHtmlControl from 'sethFormBuilder/gui/ui/controls/HtmlControl';
 import GUIAddressControl from 'sethFormBuilder/gui/ui/controls/AddressControl';
+import GUIRadioControl from 'sethFormBuilder/gui/ui/controls/RadioControl';
 
 // TEMPLATE Control
 import TEMPLATETextControl from 'sethFormBuilder/template/ui/common/controls/TextControl';
@@ -27,6 +28,7 @@ import TEMPLATESelectControl from 'sethFormBuilder/template/ui/common/controls/S
 import TEMPLATEFileControl from 'sethFormBuilder/template/ui/common/controls/FileControl';
 import TEMPLATEHtmlControl from 'sethFormBuilder/template/ui/common/controls/HtmlControl';
 import TEMPLATEAddressControl from 'sethFormBuilder/template/ui/common/controls/AddressControl';
+import TEMPLATERadioControl from 'sethFormBuilder/template/ui/common/controls/RadioControl';
 
 // CONFIG CONTROL
 import SIDEBARDatePickerControl from 'sethFormBuilder/template/ui/sidebar_items/DatePickerConfigComponent';
@@ -38,6 +40,7 @@ import SIDEBARCheckboxControl from 'sethFormBuilder/template/ui/sidebar_items/Ch
 import SIDEBARFileControl from 'sethFormBuilder/template/ui/sidebar_items/FileConfigComponent';
 import SIDEBARHtmlControl from 'sethFormBuilder/template/ui/sidebar_items/HtmlConfigComponent';
 import SIDEBARAddressControl from 'sethFormBuilder/template/ui/sidebar_items/AddressConfigComponent';
+import SIDEBARRadioControl from 'sethFormBuilder/template/ui/sidebar_items/RadioConfigComponent';
 
 // Template Control
 // special key for control:
@@ -130,6 +133,15 @@ const CONTROL_TYPES = {
             gui: GUIAddressControl,
             template: TEMPLATEAddressControl,
             config: SIDEBARAddressControl
+        }
+    },
+    radio: {
+        label: "Radio Buttons",
+        icon: faDatabase,
+        source: {
+            gui: GUIRadioControl,
+            template: TEMPLATERadioControl,
+            config: SIDEBARRadioControl
         }
     },
 };

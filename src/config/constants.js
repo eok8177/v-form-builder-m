@@ -124,6 +124,10 @@ FORM_CONSTANTS.Type = {
         label:"Address Block",
         icon: faEdit
     },
+    radio: {
+        label: "Radio Buttons",
+        icon: faDatabase
+    },
 };
 
 FORM_CONSTANTS.WidthOptions = {
