@@ -83,6 +83,7 @@ FORM_CONSTANTS.Control = {
 
     hidden: false, // hidden field
     text: '', // HTML Block
+    cssClass: '', // custom CSS Class
 
     isCalculated: false // is isCalculated data or not
 };
