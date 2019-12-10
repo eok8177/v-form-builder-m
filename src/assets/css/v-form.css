@@ -44,4 +44,6 @@ label.underline {
 .sticky {
     position: sticky;
     top: 60px;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
 }
