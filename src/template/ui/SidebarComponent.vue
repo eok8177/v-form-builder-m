@@ -30,7 +30,7 @@
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-outline-info" @click="applyEditSidebar">Apply</button>
                     <button class="btn btn-outline-secondary" @click="closeEditSidebar">Close</button>
-                </div
+                </div>
             </div>
         </div>
     </div>
