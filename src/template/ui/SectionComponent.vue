@@ -9,7 +9,7 @@
                 </select>
             </div> -->
             <div class="col-md-12 text-right">
-                <button class="btn btn-outline-info" @click="preview">
+                <button class="btn btn-outline-info" onclick="preview()" title="Open in new Tab">
                     <font-awesome-icon icon="image"/>
                     Preview
                 </button>
@@ -146,9 +146,6 @@
 
                 // after hook
                 Hooks.Row.afterAdd.run(rowInfo, this.form.sections[secIndex]);
-            },
-            preview() {
-                this.$parent.preview();
             },
             updateSectionInfo(sectionInfo, index) {
                 _.deepExtend(this.form.sections[index], sectionInfo);

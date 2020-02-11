@@ -6,18 +6,6 @@ import {faClock} from '@fortawesome/free-solid-svg-icons/faClock';
 import {faCheck} from '@fortawesome/free-solid-svg-icons/faCheck';
 import {faDatabase} from '@fortawesome/free-solid-svg-icons/faDatabase';
 
-// GUI Control
-import GUICheckboxControl from 'sethFormBuilder/gui/ui/controls/CheckboxControl';
-import GUIDatePickerControl from 'sethFormBuilder/gui/ui/controls/DatePickerControl';
-import GUINumberControl from 'sethFormBuilder/gui/ui/controls/NumberControl';
-import GUISelectControl from 'sethFormBuilder/gui/ui/controls/SelectControl';
-import GUITextControl from 'sethFormBuilder/gui/ui/controls/TextControl';
-import GUITimePickerControl from 'sethFormBuilder/gui/ui/controls/TimePickerControl';
-import GUIFileControl from 'sethFormBuilder/gui/ui/controls/FileControl';
-import GUIHtmlControl from 'sethFormBuilder/gui/ui/controls/HtmlControl';
-import GUIAddressControl from 'sethFormBuilder/gui/ui/controls/AddressControl';
-import GUIRadioControl from 'sethFormBuilder/gui/ui/controls/RadioControl';
-
 // TEMPLATE Control
 import TEMPLATETextControl from 'sethFormBuilder/template/ui/common/controls/TextControl';
 import TEMPLATENumberControl from 'sethFormBuilder/template/ui/common/controls/NumberControl';
@@ -29,6 +17,7 @@ import TEMPLATEFileControl from 'sethFormBuilder/template/ui/common/controls/Fil
 import TEMPLATEHtmlControl from 'sethFormBuilder/template/ui/common/controls/HtmlControl';
 import TEMPLATEAddressControl from 'sethFormBuilder/template/ui/common/controls/AddressControl';
 import TEMPLATERadioControl from 'sethFormBuilder/template/ui/common/controls/RadioControl';
+import TEMPLATEAllFieldsControl from 'sethFormBuilder/template/ui/common/controls/AllFieldsControl';
 
 // CONFIG CONTROL
 import SIDEBARDatePickerControl from 'sethFormBuilder/template/ui/sidebar_items/DatePickerConfigComponent';
@@ -41,6 +30,7 @@ import SIDEBARFileControl from 'sethFormBuilder/template/ui/sidebar_items/FileCo
 import SIDEBARHtmlControl from 'sethFormBuilder/template/ui/sidebar_items/HtmlConfigComponent';
 import SIDEBARAddressControl from 'sethFormBuilder/template/ui/sidebar_items/AddressConfigComponent';
 import SIDEBARRadioControl from 'sethFormBuilder/template/ui/sidebar_items/RadioConfigComponent';
+import SIDEBARAllFieldsControl from 'sethFormBuilder/template/ui/sidebar_items/AllFieldsConfigComponent';
 
 // Template Control
 // special key for control:
@@ -58,7 +48,6 @@ const CONTROL_TYPES = {
         label:"Text Input",
         icon: faEdit,
         source: {
-            gui: GUITextControl,
             template: TEMPLATETextControl,
             config: SIDEBARTextControl
         }
@@ -67,7 +56,6 @@ const CONTROL_TYPES = {
         label:"Number Input",
         icon: faCalculator,
         source: {
-            gui: GUINumberControl,
             template: TEMPLATENumberControl,
             config: SIDEBARNumberControl
         }
@@ -76,7 +64,6 @@ const CONTROL_TYPES = {
         label: "Date Picker",
         icon: faCalendarAlt,
         source: {
-            gui: GUIDatePickerControl,
             template: TEMPLATEDatePickerControl,
             config: SIDEBARDatePickerControl,
         }
@@ -85,7 +72,6 @@ const CONTROL_TYPES = {
         label:"Time Picker",
         icon: faClock,
         source: {
-            gui: GUITimePickerControl,
             template: TEMPLATETimePickerControl,
             config: SIDEBARTimePickerControl,
         }
@@ -94,7 +80,6 @@ const CONTROL_TYPES = {
         label: "Select Option",
         icon: faDatabase,
         source: {
-            gui: GUISelectControl,
             template: TEMPLATESelectControl,
             config: SIDEBARSelectControl
         }
@@ -103,7 +88,6 @@ const CONTROL_TYPES = {
         label:"Checkbox",
         icon: faCheck,
         source: {
-            gui: GUICheckboxControl,
             template: TEMPLATECheckboxControl,
             config: SIDEBARCheckboxControl
         }
@@ -112,7 +96,6 @@ const CONTROL_TYPES = {
         label:"File Input",
         icon: faEdit,
         source: {
-            gui: GUIFileControl,
             template: TEMPLATEFileControl,
             config: SIDEBARFileControl
         }
@@ -121,7 +104,6 @@ const CONTROL_TYPES = {
         label:"HTML Block",
         icon: faEdit,
         source: {
-            gui: GUIHtmlControl,
             template: TEMPLATEHtmlControl,
             config: SIDEBARHtmlControl
         }
@@ -130,7 +112,6 @@ const CONTROL_TYPES = {
         label:"Address Block",
         icon: faEdit,
         source: {
-            gui: GUIAddressControl,
             template: TEMPLATEAddressControl,
             config: SIDEBARAddressControl
         }
@@ -139,9 +120,16 @@ const CONTROL_TYPES = {
         label: "Radio Buttons",
         icon: faDatabase,
         source: {
-            gui: GUIRadioControl,
             template: TEMPLATERadioControl,
             config: SIDEBARRadioControl
+        }
+    },
+    all_fields: {
+        label: "All Fields",
+        icon: faCheck,
+        source: {
+            template: TEMPLATEAllFieldsControl,
+            config: SIDEBARAllFieldsControl
         }
     },
 };

@@ -130,6 +130,10 @@ FORM_CONSTANTS.Type = {
         label: "Radio Buttons",
         icon: faDatabase
     },
+    all_fields: {
+        label: "All Fields",
+        icon: faCheck
+    },
 };
 
 FORM_CONSTANTS.WidthOptions = {

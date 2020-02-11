@@ -1,7 +1,6 @@
 <template>
     <div>
         <form-builder-template v-if="type === 'template'" ref="FormBuilderTemplate" :form="form"></form-builder-template>
-        <form-builder-gui v-else-if="type === 'gui'" ref="FormBuilderGui" :form="form"></form-builder-gui>
         <div v-else>
             <p>Type not found, did you enter correct type <b>(template, gui)</b>?</p>
         </div>
@@ -24,7 +23,7 @@
 
     // import
     import FormBuilderTemplate from './template/FormBuilderTemplate';
-    import FormBuilderGui from './gui/FormBuilderGui';
+    // import FormBuilderGui from './gui/FormBuilderGui';
 
     // special hook
     import {ValidateSettingHandler} from "sethFormBuilder/template/handler/validate_setting_handler";
@@ -33,8 +32,7 @@
     export default {
         name: "FormBuilder",
         components: {
-            FormBuilderTemplate,
-            FormBuilderGui
+            FormBuilderTemplate
         },
         model: {
             prop: 'value',
@@ -78,12 +76,6 @@
             getValue() {
                 if (this.type === 'template') {
                     return this.$refs.FormBuilderTemplate.getValue();
-                } else {
-                    if (!_.accessStr(this, '$refs.FormBuilderGui')) {
-                        return;
-                    }
-
-                    return this.$refs.FormBuilderGui.getValue();
                 }
             },
             setValue(values) {
@@ -95,8 +87,6 @@
                 if (this.type === 'template') {
                     _.deepExtend(this.form, FormHandler.recorrectStructure(values));
                     // this.$refs.FormBuilderTemplate.setValue(values);
-                } else {
-                    this.$refs.FormBuilderGui.setValue(values);
                 }
             },
             validate(showError = true) {

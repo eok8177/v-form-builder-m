@@ -6,8 +6,6 @@
         <div class="col-md-4">
             <sidebar-component></sidebar-component>
         </div>
-
-        <preview-component ref="PreviewComponent" :form="form"></preview-component>
     </div>
 </template>
 
@@ -15,7 +13,6 @@
     import SectionComponent from "./ui/SectionComponent";
     import { dom } from '@fortawesome/fontawesome-svg-core'
     import SidebarComponent from "./ui/SidebarComponent";
-    import PreviewComponent from "./ui/PreviewComponent";
     dom.watch();
 
     var default_form_value = () => ({
@@ -27,7 +24,6 @@
     export default {
         name: "form-builder-template",
         components: {
-            PreviewComponent,
             SidebarComponent,
             SectionComponent
         },
@@ -36,22 +32,12 @@
                 type: Object
             }
         },
-        // data: () => ({
-        //     form: {
-        //         sections: [],
-        //         layout: "",
-        //         _uniqueId: Math.random()
-        //     }
-        // }),
         methods: {
             getValue() {
                 return this.form;
             },
             setValue(val) {
                 this.form = val;
-            },
-            preview() {
-                this.$refs.PreviewComponent.openModal(this.form);
             }
         }
     }
