@@ -49,6 +49,14 @@
             <input type="text" class="form-control form-control-sm" v-model="control.label5">
         </div>
 
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <label>
+                    <input type="checkbox" name="mapIt" v-model="control.mapIt"> Map it
+                </label>
+            </div>
+        </div>
+
     </div>
 </template>
 
