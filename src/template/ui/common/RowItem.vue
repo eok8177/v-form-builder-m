@@ -53,8 +53,6 @@
                 }
                 if (controlInfo.type == 'address') {
                     controlInfo.className = 'col-md-12';
-                    // controlInfo.labelMap = "Google Map";
-                    // controlInfo.showMap = false;
                     controlInfo.label1 = "Street Address";
                     controlInfo.show1 = true;
                     controlInfo.label2 = "Address line 2";
@@ -65,6 +63,10 @@
                     controlInfo.show4 = true;
                     controlInfo.label5 = "Country";
                     controlInfo.show5 = false;
+                    controlInfo.mapIt = false;
+                    controlInfo.lat = "";
+                    controlInfo.lng = "";
+                    controlInfo.address = "";
                 }
 
                 // check if there's any more special fields?

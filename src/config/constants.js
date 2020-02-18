@@ -86,8 +86,7 @@ FORM_CONSTANTS.Control = {
     text: '', // HTML Block
     cssClass: '', // custom CSS Class
 
-    isCalculated: false, // is isCalculated data or not
-    mapIt: false // for Address block
+    isCalculated: false // is isCalculated data or not
 };
 
 FORM_CONSTANTS.Type = {
