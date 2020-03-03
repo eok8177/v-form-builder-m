@@ -72,6 +72,7 @@
             },
             dataAjaxModal(e) {
                 this.$refs.SelectAjaxModal.openModal();
+                this.$parent.sticky = '';
             },
             setText(index) {
                 if (!this.control.dataOptions[index].text) {
@@ -84,6 +85,12 @@
             if (this.control.dataOptions.length <= 0) {
                 this.addOption();
             }
+            let self = this;
+            // TODO not work
+            $(this.$refs.SelectAjaxModal).on("hide.bs.modal", function(){
+                console.log('hide');
+                self.$parent.sticky = 'sticky';
+            });
         },
     }
 </script>
