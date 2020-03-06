@@ -67,7 +67,7 @@ FORM_CONSTANTS.Control = {
 
     // attr for datePicker
     isTodayValue: false,
-    dateFormat: "dd/mm/yy",
+    dateFormat: "dd/mm/yyyy",
 
     // attr for timePicker
     isNowTimeValue: false,
@@ -158,12 +158,12 @@ FORM_CONSTANTS.OptionDefault = {
 
 CONTROL_CONSTANTS.DateFormat = {
     // rule: date picker format => moment format
-    'dd/mm/yy': "D/M/YYYY",
-    'dd-mm-yy': "D-M-YYYY",
-    'mm/dd/yy': "M/D/YYYY",
-    'mm-dd-yy': "M/D/YYYY",
-    'yy/mm/dd': "YYYY/M/D",
-    'yy-mm-dd': "YYYY-M-D",
+    'dd/mm/yyyy': "D/M/YYYY",
+    'dd-mm-yyyy': "D-M-YYYY",
+    'mm/dd/yyyy': "M/D/YYYY",
+    'mm-dd-yyyy': "M/D/YYYY",
+    'yyyy/mm/dd': "YYYY/M/D",
+    'yyyy-mm-dd': "YYYY-M-D",
 };
 
 CONTROL_CONSTANTS.TimeFormat = {
