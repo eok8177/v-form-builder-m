@@ -12,6 +12,19 @@
                 <select2-control :options="dateFormatOptions" v-model="control.dateFormat"></select2-control>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Min date</label>
+                <input type="text" class="form-control decimalPlaces minDate" v-model="control.minDate">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Max date</label>
+                <input type="text" class="form-control decimalPlaces maxDate" v-model="control.maxDate">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -35,6 +48,31 @@
                 return key;
             });
         },
+        mounted() {
+            let self = this;
+            this.$controlMin = $(this.$el).find(".minDate");
+            this.$controlMin.datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function(date) {
+                    self.control.minDate = date;
+                },
+            });
+            this.$controlMax = $(this.$el).find(".maxDate");
+            this.$controlMax.datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function(date) {
+                    self.control.maxDate = date;
+                },
+            });
+        },
+        beforeDestroy() {
+            this.$controlMin.datepicker('destroy');
+            this.$controlMax.datepicker('destroy');
+        }
     }
 </script>
 

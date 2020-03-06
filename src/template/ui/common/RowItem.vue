@@ -69,6 +69,16 @@
                     controlInfo.address = "";
                 }
 
+                if (controlInfo.type == 'number') {
+                    controlInfo.minValue = null;
+                    controlInfo.maxValue = null;
+                }
+
+                if (controlInfo.type == 'datepicker') {
+                    controlInfo.minDate = null;
+                    controlInfo.maxDate = null;
+                }
+
                 // check if there's any more special fields?
                 if(CONTROL_TYPES[controlType].other_properties) {
                     _.each(CONTROL_TYPES[controlType].other_properties, (value, key) => {

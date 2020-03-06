@@ -14,6 +14,19 @@
                        v-model="control.decimalPlace" :disabled="control.isInteger">
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Min value</label>
+                <input type="number" class="form-control decimalPlaces" v-model="control.minValue">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Max value</label>
+                <input type="number" class="form-control decimalPlaces" v-model="control.maxValue">
+            </div>
+        </div>
     </div>
 </template>
 
