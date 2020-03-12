@@ -51,6 +51,10 @@
                 if (controlInfo.type == 'html') { // set full width to HTML Block
                     controlInfo.className = 'col-md-12';
                 }
+                if (controlInfo.type == 'file') { // init vars fo File item
+                    controlInfo.maxSize = null;
+                    controlInfo.extensions = null;
+                }
                 if (controlInfo.type == 'address') {
                     controlInfo.className = 'col-md-12';
                     controlInfo.label1 = "Street Address";
