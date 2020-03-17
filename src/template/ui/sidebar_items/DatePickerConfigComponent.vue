@@ -6,12 +6,12 @@
             </label>
         </div>
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="form-group">
                 <label>Date Format</label>
                 <select2-control :options="dateFormatOptions" v-model="control.dateFormat"></select2-control>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-6">
             <div class="form-group">

@@ -109,7 +109,7 @@
                                         </div>
 
                                     </div>
-
+                                    <small class="text-muted">Date format: {{DATE_FORMAT}}</small>
                                     <hr>
                                 </div>
                             </div>
@@ -153,7 +153,8 @@
             },
             formData: {},
             fieldsForSelect: {},
-            firstField: false
+            firstField: false,
+            DATE_FORMAT: DATE_FORMAT
         }),
         methods: {
             openModal(sectionInfo, index) {
