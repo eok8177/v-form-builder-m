@@ -239,7 +239,9 @@
                         });
                     }
                 });
-                this.firstField = this.formData[Object.keys(this.formData)[0]].id;
+                if (Object.keys(this.formData)[0]) {
+                    this.firstField = this.formData[Object.keys(this.formData)[0]].id;
+                }
             },
         },
         mounted() {
