@@ -110,7 +110,18 @@
 
                                     </div>
                                     <small class="text-muted">Date format: {{DATE_FORMAT}}</small>
-                                    <hr>
+                                </div>
+
+                                <hr>
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="expandedSection" name="expanded" class="custom-control-input"  v-model="section.expanded":value="true">
+                                      <label class="custom-control-label" for="expandedSection">expanded by default</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="collapsedSection" name="expanded" class="custom-control-input" v-model="section.expanded" :value="false">
+                                      <label class="custom-control-label" for="collapsedSection">collapsed by default</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

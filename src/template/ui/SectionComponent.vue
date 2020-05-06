@@ -31,7 +31,7 @@
                                     <span class="pr-2 clickable" @click="addRow(index)"><font-awesome-icon icon="plus"/> Add Row</span>
                                     <span class="pr-2 clickable" @click="delSection(index)"><font-awesome-icon icon="times"/> Remove Section</span>
                                     <span class="pr-2 clickable" @click="configSection(index)"><font-awesome-icon icon="cog"/> Section Config</span>
-                                    <span class="clickable collapsed" data-toggle="collapse" :data-target="'#' + section.name + '_body'" :aria-expanded="section.expanded">
+                                    <span class="clickable collapsed" data-toggle="collapse" :data-target="'#' + section.name + '_body'" :aria-expanded="section.expandedAdmin">
                                         <i class="fa fa-fw fa-chevron-up"></i>
                                         <i class="fa fa-fw fa-chevron-down"></i>
                                     </span>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div :id="section.name + '_body'" class="collapse" :class="{'show': section.expanded}">
+                    <div :id="section.name + '_body'" class="collapse" :class="{'show': section.expandedAdmin}">
                         <div class="card-body sectionBody">
                             <row-component :section="section"></row-component>
                         </div>

@@ -29,7 +29,8 @@ FORM_CONSTANTS.Section = {
     minInstance: 1,
     maxInstance: 0, //0 for unlimited
     instances: [], // for save data in GUI to easily to retrieve @@
-    expanded: true,
+    expandedAdmin: true,
+    expanded: false,
 };
 
 FORM_CONSTANTS.Row = {
