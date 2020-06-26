@@ -44,7 +44,8 @@
                 var controlInfo = _.cloneDeep(FORM_CONSTANTS.Control);
                 controlInfo.type = controlType;
                 // generate id
-                controlInfo.name = _.domUniqueID(`control_${controlType}_`);
+                // controlInfo.name = _.domUniqueID(`control_${controlType}_`);
+                controlInfo.name = _.domUniqueID(false);
                 controlInfo.label = FORM_CONSTANTS.Type[controlType].label;
                 controlInfo.fieldName = controlInfo.name; // same for both
 
