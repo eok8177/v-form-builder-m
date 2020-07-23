@@ -45,7 +45,7 @@
                 controlInfo.type = controlType;
                 // generate id
                 // controlInfo.name = _.domUniqueID(`control_${controlType}_`);
-                controlInfo.name = _.domUniqueID(false);
+                controlInfo.name = _.domUniqueID('f_');
                 controlInfo.label = FORM_CONSTANTS.Type[controlType].label;
                 controlInfo.fieldName = controlInfo.name; // same for both
 
