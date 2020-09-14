@@ -1,10 +1,15 @@
 <template>
-    <div class="row" style="margin: 0 20px;">
+    <div class="row">
         <div class="col-md-8">
             <section-component :form="form" ref="SectionComponent"></section-component>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 sticky-block">
             <sidebar-component></sidebar-component>
+
+            <div class="my-3 text-right">
+                <div v-if="$parent.$parent.status" class="text-success mb-1">Config updated</div>
+                <button class="btn btn-secondary" @click="saveConfig()">Save Form Settings</button>
+            </div>
         </div>
     </div>
 </template>
@@ -38,6 +43,9 @@
             },
             setValue(val) {
                 this.form = val;
+            },
+            saveConfig() {
+                this.$parent.$parent.saveConfig();
             }
         }
     }

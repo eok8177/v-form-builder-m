@@ -1,5 +1,5 @@
 <template>
-    <div :class="sticky" :data-sticky="sticky">
+    <div class="card">
         <div class="controlSidebar list-group" v-show="!isConfig">
             <a href="#" class="list-group-item active">
                 Supported Controls
@@ -58,7 +58,6 @@
                 text: '',
                 type: ''
             },
-            sticky: 'sticky',
         }),
         methods: {
             closeEditSidebar() {

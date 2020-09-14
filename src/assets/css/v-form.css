@@ -41,7 +41,7 @@ label.underline {
     padding: 4px;
     z-index: 1;
 }
-.sticky {
+.sticky-block {
     position: sticky;
     top: 60px;
     overflow-y: auto;
