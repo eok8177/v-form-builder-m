@@ -50,6 +50,7 @@ FORM_CONSTANTS.Control = {
     value: "",
     className: 'col-md-4',
     readonly: false,
+    description: "",
 
     // label style
     labelBold: false,
